@@ -1,5 +1,5 @@
 import pandas as pd
-df = pd.read_csv(r"Day4\datasets\data.csv")
+df = pd.read_csv(r"day 4\datasets\data.csv")
 # 1. IDENTIFY: Where are the holes?
 print("Missing Values:\n", df.isnull().sum())
 
