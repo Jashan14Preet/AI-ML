@@ -1,40 +1,67 @@
-Technical Summary
+# Day 5 Report: Linear Regression & First Prediction
 
-Today, I worked on Linear Regression, building a model to predict exam scores based on hours studied.
+---
 
-I learned and implemented:
+## Setup Status
 
-Train/Test Split
-Used scikit-learn’s train_test_split to separate training and testing data (80/20)
-Model Training
-Implemented LinearRegression to learn the relationship between Hours and Score
-Prediction
-Generated predictions for unseen data (e.g., 11 hours)
-Evaluation
-Calculated Mean Squared Error (MSE) and R² Score to measure model performance
-Visualization
-Used Matplotlib to plot actual points and the regression line
+My development environment is fully operational.
 
-The most important concept I mastered today was how to evaluate a model’s performance using metrics and visualizations.
+* Python is installed and running correctly
+* Jupyter Notebook is working smoothly
+* Required libraries like `pandas`, `scikit-learn`, and `matplotlib` are installed
+* VS Code / Notebook environment is properly configured
 
-The "Bug" Log
-Warning: X does not have valid feature names
+---
 
-Message:
+## Task Inventory
 
-UserWarning: X does not have valid feature names
+* Created a sample dataset (Hours vs Score) using pandas
+* Separated features (`X`) and target (`y`)
+* Performed train-test split (80% training, 20% testing)
+* Initialized and trained the Linear Regression model using `model.fit()`
+* Generated predictions on test data using `model.predict()`
+* Evaluated model performance using Mean Squared Error (MSE) and R² score
+* Predicted output for a new unseen value (11 hours)
+* Visualized the dataset and regression line using matplotlib
+* Wrote reflection on impact of training with less data
 
-Cause:
-Predicted using a plain list ([[11]]) instead of a DataFrame with column names.
+---
 
-Fix Applied:
+## Debugging Log
 
-new_data = pd.DataFrame([[11]], columns=['Hours'])
-prediction = model.predict(new_data)
-Conceptual Reflection
-What happens if we train the model on only 2 rows instead of 8?
-The model may overfit the 2 points and fail to learn the real trend.
-Predictions become unreliable and can be misleading.
-More data allows the model to generalize better and make accurate predictions.
+###  Bug 1: NameError - 'X' is not defined
 
-Lesson: Linear Regression requires enough data points to capture the underlying relationship effectively.
+**Error:**
+NameError: name 'X' is not defined
+
+**Cause:**
+The plotting cell was executed before defining `X` and `y`.
+
+**Solution:**
+Re-ran the cell where `X` and `y` were defined before executing the plotting code. Also ensured to run all cells in sequence using "Run All".
+
+---
+
+### Bug 2: Model not fitted error (predict before fit)
+
+**Error:**
+Model was used for prediction before calling `model.fit()`
+
+**Cause:**
+Attempted to use `model.predict()` without training the model first.
+
+**Solution:**
+Ensured that `model.fit(X_train, y_train)` is executed before making predictions.
+
+---
+
+## Key Insights
+
+* Splitting data into training and testing sets is essential to evaluate real model performance
+* Linear Regression works by finding the best-fit line that represents the relationship between input and output
+* More training data improves model accuracy and generalization
+* Small datasets can lead to poor predictions and unreliable models
+* Visualization helps in clearly understanding how well the model fits the data
+* Evaluation metrics like R² score and MSE are important to judge model performance
+
+
